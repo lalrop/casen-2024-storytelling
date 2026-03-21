@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Chile que vivimos — CASEN 2024</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:   #001529;
+  --blue:   #003366;
+  --accent: #1a6fc4;
+  --red:    #990000;
+  --red2:   #8b0000;
+  --cream:  #f5f0e8;
+  --offwhite: #faf8f5;
+  --gray:   #e4e0da;
+  --mid:    #888;
+  --text:   #1a1a2e;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; background: var(--navy); color: white;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(0,51,102,.7) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(153,0,0,.25) 0%, transparent 50%);
+}
+.hero-inner { position: relative; z-index: 1; max-width: 820px; }
+.hero-eyebrow {
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.4); margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.2rem, 9vw, 7.5rem); line-height: .95; font-weight: 900;
+  margin-bottom: 1.5rem;
+}
+.hero-title em { font-style: italic; color: rgba(255,255,255,.38); }
+.hero-sub {
+  font-size: clamp(.95rem, 2vw, 1.2rem); color: rgba(255,255,255,.6);
+  max-width: 560px; margin: 0 auto 3rem; font-weight: 300;
+}
+.hero-kpis { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; }
+.kpi-num {
+  display: block; font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 900; color: white; line-height: 1;
+}
+.kpi-label {
+  display: block; font-size: .7rem; text-transform: uppercase;
+  letter-spacing: .12em; color: rgba(255,255,255,.4); margin-top: .3rem;
+}
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  color: rgba(255,255,255,.3); font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+}
+.scroll-hint span { width: 20px; height: 20px; border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor; transform: rotate(45deg); animation: bob 2s infinite; }
+@keyframes bob { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(4px)} }
+
+/* ── CHAPTER BREAK ── */
+.ch {
+  min-height: 55vh; display: flex; align-items: center; justify-content: center;
+  padding: 5rem 2rem; text-align: center;
+}
+.ch.navy { background: var(--navy); color: white; }
+.ch.red  { background: var(--red);  color: white; }
+.ch-num  { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; opacity: .45; margin-bottom: .9rem; }
+.ch-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.05;
+  max-width: 680px; margin: 0 auto 1.2rem;
+}
+.ch-desc { font-size: 1.05rem; opacity: .65; max-width: 520px; margin: 0 auto; font-weight: 300; }
+
+/* ── SCROLLY LAYOUT ── */
+.scrolly { position: relative; display: flex; }
+.scrolly .fig {
+  position: sticky; top: 0; height: 100vh; width: 58%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--offwhite); padding: 2rem;
+}
+.scrolly .fig.dk { background: var(--navy); }
+.scrolly .steps { width: 42%; }
+.step {
+  min-height: 85vh; padding: 4rem 2.5rem 4rem 2rem;
+  display: flex; align-items: center;
+}
+.step:first-child { padding-top: 20vh; }
+.step:last-child  { padding-bottom: 20vh; }
+.step-body { max-width: 360px; }
+.step-tag {
+  font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .7rem; display: block;
+}
+.step-tag.r { color: var(--red2); }
+.step-tag.w { color: #5ba3f5; }
+.step h3 { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; line-height: 1.2; margin-bottom: .9rem; }
+.step p { font-size: .97rem; line-height: 1.75; color: #484848; margin-bottom: .8rem; }
+.step p strong { color: var(--text); }
+.big-num {
+  display: block; font-family: 'Playfair Display', serif;
+  font-size: 3.4rem; font-weight: 900; color: var(--red2); line-height: 1; margin: .9rem 0;
+}
+.big-num.b { color: var(--accent); }
+.big-label { font-size: .8rem; color: #777; letter-spacing: .04em; }
+
+/* dark steps */
+.dk-steps { background: #080f1c; }
+.dk-steps .step h3 { color: white; }
+.dk-steps .step p  { color: rgba(255,255,255,.58); }
+.dk-steps .step p strong { color: white; }
+.big-num.w  { color: #5ba3f5; }
+.big-label.w { color: rgba(255,255,255,.4); }
+
+/* ── BUBBLES ── */
+.bubbles-wrap { background: white; padding: 5rem 2rem; }
+.bubbles-inner { max-width: 980px; margin: 0 auto; }
+.sec-h2 { font-family: 'Playfair Display', serif; font-size: 2.3rem; margin-bottom: .4rem; }
+.sec-lead { font-size: 1.03rem; color: #555; max-width: 560px; margin-bottom: 2.5rem; font-weight: 300; }
+#viz-bubbles { width: 100%; height: 480px; display: block; }
+.bub-detail {
+  display: none; margin-top: 1.2rem;
+  border-left: 4px solid var(--blue); padding: 1.2rem 1.5rem;
+  background: #f2efe9; font-size: .88rem;
+}
+.bub-detail.on { display: grid; grid-template-columns: repeat(3,1fr); gap: .9rem; }
+.bd label { display: block; font-size: .68rem; text-transform: uppercase; letter-spacing: .09em; color: #888; }
+.bd span  { font-size: 1.3rem; font-weight: 700; color: var(--blue); }
+
+/* ── REGIONS ── */
+.regions-wrap { background: #ede9e0; padding: 5rem 2rem; }
+.regions-inner { max-width: 980px; margin: 0 auto; }
+#viz-regiones { width: 100%; height: 580px; display: block; }
+
+/* ── CLOSING ── */
+.closing {
+  background: var(--navy); color: white;
+  padding: 8rem 2rem; text-align: center;
+}
+.closing h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 4vw, 3.2rem); max-width: 660px; margin: 0 auto 2rem; line-height: 1.2;
+}
+.closing p { color: rgba(255,255,255,.55); max-width: 480px; margin: 0 auto .9rem; font-size: .93rem; }
+.closing-rule { width: 56px; height: 3px; background: var(--red); margin: 3rem auto; }
+.source { font-size: .75rem; color: rgba(255,255,255,.28); letter-spacing: .04em; margin-top: 3.5rem; }
+
+/* ── TOOLTIP ── */
+#tip {
+  position: fixed; z-index: 999; background: rgba(0,15,35,.95); color: white;
+  padding: .65rem 1rem; font-size: .82rem; border-radius: 4px;
+  pointer-events: none; opacity: 0; transition: opacity .12s; max-width: 230px; line-height: 1.5;
+}
+#tip.on { opacity: 1; }
+#tip strong { display: block; margin-bottom: .25rem; }
+.tr { display: flex; justify-content: space-between; gap: 1rem; }
+.tv { color: #7eb8f7; font-weight: 600; }
+.tv.r { color: #ff8888; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 750px) {
+  .scrolly { flex-direction: column; }
+  .scrolly .fig { position: relative; width: 100%; height: 56vw; min-height: 280px; }
+  .scrolly .steps { width: 100%; }
+  .step { min-height: auto; padding: 2rem 1.5rem; }
+  .step:first-child { padding-top: 2rem; }
+  .hero-kpis { gap: 1.5rem; }
+  .bub-detail.on { grid-template-columns: repeat(2,1fr); }
+  #viz-regiones { height: 500px; }
+}
+</style>
+</head>
+<body>
+
+<div id="tip"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Encuesta CASEN 2024 · Ministerio de Desarrollo Social · Chile</p>
+    <h1 class="hero-title">El Chile<br>que <em>vivimos</em></h1>
+    <p class="hero-sub">218.367 personas. 78.654 hogares. 16 regiones. Una fotografía honesta de la desigualdad que persiste — y de la movilidad que aún es posible.</p>
+    <div class="hero-kpis">
+      <div>
+        <span class="kpi-num" data-to="19.6" data-dec="1" data-sfx="%">0%</span>
+        <span class="kpi-label">en pobreza por ingresos</span>
+      </div>
+      <div>
+        <span class="kpi-num" data-to="33.5" data-dec="1" data-pfx="-" data-sfx="%">0%</span>
+        <span class="kpi-label">brecha salarial de género</span>
+      </div>
+      <div>
+        <span class="kpi-num" data-to="60.9" data-dec="1" data-sfx="%">0%</span>
+        <span class="kpi-label">movilidad educativa ascendente</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">Desplaza<span></span></div>
+</section>
+
+<!-- CH 1 -->
+<div class="ch navy">
+  <div>
+    <p class="ch-num">Capítulo 01</p>
+    <h2 class="ch-title">Los cinco Chiles</h2>
+    <p class="ch-desc">No existe un Chile uniforme. Los datos agrupan a los hogares en cinco realidades distintas, desde la pobreza estructural hasta los emprendedores consolidados.</p>
+  </div>
+</div>
+
+<div class="bubbles-wrap">
+  <div class="bubbles-inner">
+    <h2 class="sec-h2">¿A qué Chile perteneces?</h2>
+    <p class="sec-lead">Cada círculo es un segmento de hogares chilenos agrupados por ingresos, escolaridad, zona y otras variables. <strong>Haz clic</strong> para explorar el perfil de cada grupo.</p>
+    <svg id="viz-bubbles"></svg>
+    <div id="bub-detail" class="bub-detail"></div>
+  </div>
+</div>
+
+<!-- CH 2 -->
+<div class="ch red">
+  <div>
+    <p class="ch-num">Capítulo 02</p>
+    <h2 class="ch-title">La brecha que<br>no se ve</h2>
+    <p class="ch-desc">Por cada $100 que gana un hombre, una mujer con la misma educación, edad y región gana $67. Esta diferencia no tiene explicación objetiva.</p>
+  </div>
+</div>
+
+<!-- SCROLLY BRECHA -->
+<div class="scrolly" id="scr-brecha">
+  <figure class="fig" id="fig-brecha"><svg id="viz-brecha"></svg></figure>
+  <div class="steps">
+    <div class="step" data-i="0">
+      <div class="step-body">
+        <span class="step-tag r">El panorama general</span>
+        <h3>Dos salarios, el mismo país</h3>
+        <p>En promedio, un hombre trabajador gana <strong>$1.023.453</strong> al mes. Una mujer trabajadora gana <strong>$797.929</strong>.</p>
+        <span class="big-num">$225.524</span>
+        <span class="big-label">de diferencia mensual en promedio</span>
+      </div>
+    </div>
+    <div class="step" data-i="1">
+      <div class="step-body">
+        <span class="step-tag r">Controlando variables</span>
+        <h3>La brecha neta: más profunda de lo que parece</h3>
+        <p>Cuando se controla por educación, edad, región y zona, la brecha <em>se amplía</em>: las mujeres ganan un <strong>33.5% menos</strong>.</p>
+        <p>La diferencia no se explica por factores objetivos.</p>
+        <span class="big-num">-33.5%</span>
+        <span class="big-label">brecha salarial controlada (modelo WLS)</span>
+      </div>
+    </div>
+    <div class="step" data-i="2">
+      <div class="step-body">
+        <span class="step-tag r">Por nivel educacional</span>
+        <h3>Más educación, ¿menos brecha?</h3>
+        <p>La brecha no desaparece con más años de estudio. En educación media incompleta llega a <strong>-33.5%</strong>; en superior completa, a <strong>-29%</strong>.</p>
+        <p>La educación ayuda a ambos sexos por igual, pero no cierra la brecha entre ellos.</p>
+      </div>
+    </div>
+    <div class="step" data-i="3">
+      <div class="step-body">
+        <span class="step-tag r">El emprendimiento</span>
+        <h3>Ni emprender iguala el campo</h3>
+        <p>Las mujeres patronas ganan un <strong>36% menos</strong> que los hombres patrones con escolaridad similar. Las trabajadoras por cuenta propia, un <strong>31% menos</strong>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REGIONES -->
+<div class="regions-wrap">
+  <div class="regions-inner">
+    <h2 class="sec-h2">La geografía de la desigualdad</h2>
+    <p class="sec-lead">La brecha salarial varía según región. Antofagasta, impulsada por la minería, alcanza el <strong>-32.6%</strong>. Maule tiene la menor brecha: <strong>-14.8%</strong>.</p>
+    <svg id="viz-regiones"></svg>
+  </div>
+</div>
+
+<!-- CH 3 -->
+<div class="ch navy">
+  <div>
+    <p class="ch-num">Capítulo 03</p>
+    <h2 class="ch-title">¿Funciona el<br>ascensor social?</h2>
+    <p class="ch-desc">17.398 pares de hijos y padres revelan la realidad de la movilidad educativa. Seis de cada diez jóvenes superan el nivel educativo de sus padres.</p>
+  </div>
+</div>
+
+<!-- SCROLLY MOVILIDAD -->
+<div class="scrolly" id="scr-movil">
+  <figure class="fig dk" id="fig-movil"><svg id="viz-movil"></svg></figure>
+  <div class="steps dk-steps">
+    <div class="step" data-i="0">
+      <div class="step-body">
+        <span class="step-tag w">El panorama</span>
+        <h3>6 de cada 10 chilenos subieron</h3>
+        <p>El <strong>60.9%</strong> de los jóvenes tiene más educación que su padre o jefe de hogar. Solo el 12.6% tuvo movilidad descendente.</p>
+        <span class="big-num w">60.9%</span>
+        <span class="big-label w">movilidad educativa ascendente</span>
+      </div>
+    </div>
+    <div class="step" data-i="1">
+      <div class="step-body">
+        <span class="step-tag w">La matriz de transición</span>
+        <h3>De dónde vienes importa (mucho)</h3>
+        <p>Si tu padre completó educación superior, tienes un <strong>62.3%</strong> de probabilidad de también completarla. Si no tuvo educación formal, esa cifra baja al <strong>1.8%</strong>.</p>
+        <p>El origen sigue siendo el predictor más poderoso del destino educativo.</p>
+      </div>
+    </div>
+    <div class="step" data-i="2">
+      <div class="step-body">
+        <span class="step-tag w">La paradoja de género</span>
+        <h3>Las mujeres suben más — y ganan menos</h3>
+        <p>Las mujeres logran movilidad ascendente del <strong>65.5%</strong>, frente al <strong>57.5%</strong> de los hombres. Son más educadas.</p>
+        <p>Y sin embargo, el mercado laboral no lo reconoce.</p>
+        <span class="big-num" style="color:#ff8888">+8 pp</span>
+        <span class="big-label w">más movilidad ascendente en mujeres</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLOSING -->
+<section class="closing">
+  <h2>Los datos son personas. Las personas merecen respuestas.</h2>
+  <div class="closing-rule"></div>
+  <p>La CASEN 2024 documenta un Chile que avanza en educación, pero que arrastra brechas salariales estructurales. Un país donde el origen sigue determinando el destino, y donde las mujeres logran más — y reciben menos.</p>
+  <p style="margin-top:1.5rem">Entender estos datos es el primer paso para cambiarlos.</p>
+  <p class="source">Fuente: Encuesta de Caracterización Socioeconómica Nacional (CASEN) 2024, Ministerio de Desarrollo Social y Familia, Chile. Procesamiento propio con Python, DuckDB y D3.js.</p>
+</section>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://unpkg.com/scrollama"></script>
+<script>
+/* ═══════════════════════════════════════
+   DATA
+═══════════════════════════════════════ */
+const DATA = {
+  clusters: [
+    { n:9112,  pct:11.6, ingreso:373139, esc:9.7,  tam:3.51, urb:76.7, pobre:99.9, empr:24.1, label:"Pobreza estructural",          color:"#8b0000" },
+    { n:2697,  pct:3.4,  ingreso:352326, esc:11.6, tam:4.34, urb:83.2, pobre:50.0, empr:19.5, label:"Vulnerabilidad moderada",       color:"#c45400" },
+    { n:9543,  pct:12.1, ingreso:590324, esc:9.5,  tam:2.55, urb:0.0,  pobre:0.0,  empr:0.0,  label:"Clase media rural",             color:"#3c7a6e" },
+    { n:46700, pct:59.4, ingreso:881276, esc:12.8, tam:2.65, urb:100,  pobre:0.0,  empr:0.0,  label:"Clase media urbana asalariada", color:"#003366" },
+    { n:10602, pct:13.5, ingreso:902379, esc:12.7, tam:2.74, urb:80.2, pobre:0.1,  empr:100,  label:"Emprendedores consolidados",    color:"#1a4a7a" }
+  ],
+  edu: [
+    { niv:"Sin educación",     h:387359,  m:272970,  br:-29.5 },
+    { niv:"Básica incompleta", h:449229,  m:312882,  br:-30.4 },
+    { niv:"Básica completa",   h:530259,  m:361438,  br:-31.8 },
+    { niv:"Media incompleta",  h:597157,  m:397061,  br:-33.5 },
+    { niv:"Media completa",    h:703529,  m:503543,  br:-28.4 },
+    { niv:"Sup. incompleta",   h:900862,  m:616973,  br:-31.5 },
+    { niv:"Sup. completa",     h:1699654, m:1206148, br:-29.0 }
+  ],
+  empr: [
+    { tipo:"Patrón / Empleador", h:1788205, m:1142386, br:-36.1 },
+    { tipo:"Cuenta propia",      h:679237,  m:466884,  br:-31.1 }
+  ],
+  regiones: [
+    { r:"Antofagasta",        h:1144601, m:771636,  br:-32.6 },
+    { r:"Tarapacá",           h:951665,  m:678876,  br:-28.7 },
+    { r:"Atacama",            h:965771,  m:698310,  br:-27.7 },
+    { r:"Coquimbo",           h:868174,  m:635540,  br:-26.8 },
+    { r:"Valparaíso",         h:896731,  m:669754,  br:-25.3 },
+    { r:"O'Higgins",          h:848833,  m:653089,  br:-23.1 },
+    { r:"Biobío",             h:899514,  m:692657,  br:-23.0 },
+    { r:"Metropolitana",      h:1219837, m:950696,  br:-22.1 },
+    { r:"La Araucanía",       h:751489,  m:590864,  br:-21.4 },
+    { r:"Los Lagos",          h:825878,  m:647316,  br:-21.6 },
+    { r:"Arica y Parinacota", h:807923,  m:640847,  br:-20.7 },
+    { r:"Magallanes",         h:1091220, m:891766,  br:-18.3 },
+    { r:"Aysén",              h:1069148, m:872864,  br:-18.4 },
+    { r:"Los Ríos",           h:804530,  m:676501,  br:-15.9 },
+    { r:"Ñuble",              h:737921,  m:625916,  br:-15.2 },
+    { r:"Maule",              h:709295,  m:604645,  br:-14.8 }
+  ],
+  movSexo: [
+    { s:"Mujer",  asc:65.5, est:24.5, des:10.0 },
+    { s:"Hombre", asc:57.5, est:28.0, des:14.6 }
+  ],
+  movMatriz: [
+    ["Sin educación","Sin educación",7.8],["Sin educación","Básica incompleta",15.3],["Sin educación","Básica completa",18.9],["Sin educación","Media incompleta",14.8],["Sin educación","Media completa",38.5],["Sin educación","Sup. incompleta",2.9],["Sin educación","Sup. completa",1.8],
+    ["Básica incompleta","Sin educación",2.1],["Básica incompleta","Básica incompleta",11.4],["Básica incompleta","Básica completa",17.3],["Básica incompleta","Media incompleta",14.9],["Básica incompleta","Media completa",42.0],["Básica incompleta","Sup. incompleta",5.8],["Básica incompleta","Sup. completa",6.5],
+    ["Básica completa","Sin educación",0.5],["Básica completa","Básica incompleta",5.9],["Básica completa","Básica completa",13.2],["Básica completa","Media incompleta",13.6],["Básica completa","Media completa",47.3],["Básica completa","Sup. incompleta",7.8],["Básica completa","Sup. completa",11.7],
+    ["Media incompleta","Sin educación",0.3],["Media incompleta","Básica incompleta",3.2],["Media incompleta","Básica completa",7.4],["Media incompleta","Media incompleta",13.0],["Media incompleta","Media completa",50.8],["Media incompleta","Sup. incompleta",10.2],["Media incompleta","Sup. completa",15.1],
+    ["Media completa","Sin educación",0.1],["Media completa","Básica incompleta",1.2],["Media completa","Básica completa",3.6],["Media completa","Media incompleta",8.4],["Media completa","Media completa",43.7],["Media completa","Sup. incompleta",14.8],["Media completa","Sup. completa",28.2],
+    ["Sup. incompleta","Sin educación",0.1],["Sup. incompleta","Básica incompleta",0.5],["Sup. incompleta","Básica completa",1.4],["Sup. incompleta","Media incompleta",5.8],["Sup. incompleta","Media completa",31.4],["Sup. incompleta","Sup. incompleta",17.8],["Sup. incompleta","Sup. completa",43.0],
+    ["Sup. completa","Sin educación",0.0],["Sup. completa","Básica incompleta",0.2],["Sup. completa","Básica completa",0.8],["Sup. completa","Media incompleta",3.1],["Sup. completa","Media completa",33.6],["Sup. completa","Sup. incompleta",0.0],["Sup. completa","Sup. completa",62.3]
+  ]
+};
+
+/* ═══════════════════════════════════════
+   UTILS
+═══════════════════════════════════════ */
+const $id = id => document.getElementById(id);
+const tip = $id('tip');
+const fmtCLP = v => '$' + d3.format(',.0f')(v);
+const fmtM   = v => '$' + (v/1e6).toFixed(2) + 'M';
+const fmtK   = v => '$' + Math.round(v/1000) + 'k';
+
+function showTip(html, e) {
+  tip.innerHTML = html;
+  tip.classList.add('on');
+  moveTip(e);
+}
+function moveTip(e) {
+  const x = e.clientX, y = e.clientY;
+  tip.style.left = (x + 16 > window.innerWidth - 240 ? x - 240 : x + 16) + 'px';
+  tip.style.top  = (y + 16 > window.innerHeight - 130 ? y - 130 : y + 16) + 'px';
+}
+function hideTip() { tip.classList.remove('on'); }
+
+/* ═══════════════════════════════════════
+   ANIMATED COUNTERS
+═══════════════════════════════════════ */
+document.querySelectorAll('.kpi-num[data-to]').forEach(el => {
+  const to  = +el.dataset.to;
+  const dec = +(el.dataset.dec || 0);
+  const pfx = el.dataset.pfx || '';
+  const sfx = el.dataset.sfx || '';
+  setTimeout(() => {
+    const t0 = performance.now();
+    (function tick(now) {
+      const t = Math.min((now - t0) / 2000, 1);
+      const v = (1 - Math.pow(1-t, 3)) * to;
+      el.textContent = pfx + v.toFixed(dec) + sfx;
+      if (t < 1) requestAnimationFrame(tick);
+    })(performance.now());
+  }, 600);
+});
+
+/* ═══════════════════════════════════════
+   BUBBLE CHART
+═══════════════════════════════════════ */
+(function() {
+  const svgEl = $id('viz-bubbles');
+  const detEl = $id('bub-detail');
+  let active  = null;
+
+  function draw() {
+    const W = svgEl.parentElement.clientWidth;
+    const H = 480;
+    svgEl.setAttribute('width', W);
+    svgEl.setAttribute('height', H);
+    const svg = d3.select('#viz-bubbles');
+    svg.selectAll('*').remove();
+
+    const rSc = d3.scaleSqrt()
+      .domain([0, d3.max(DATA.clusters, d => d.n)])
+      .range([0, Math.min(W * .24, H * .33)]);
+
+    const nodes = DATA.clusters.map(d => ({...d}));
+    const sim = d3.forceSimulation(nodes)
+      .force('x', d3.forceX(W/2).strength(.05))
+      .force('y', d3.forceY(H/2).strength(.07))
+      .force('charge', d3.forceManyBody().strength(-10))
+      .force('collide', d3.forceCollide(d => rSc(d.n) + 5))
+      .stop();
+    for (let i = 0; i < 300; i++) sim.tick();
+
+    const g = svg.selectAll('.bn').data(nodes).join('g').attr('class','bn')
+      .attr('transform', d => `translate(${d.x},${d.y})`)
+      .style('cursor','pointer')
+      .on('click', (e, d) => {
+        active = active === d.label ? null : d.label;
+        g.selectAll('circle').transition().duration(200)
+          .attr('opacity', nd => !active || nd.label === active ? .88 : .22);
+        active ? showDetail(d) : hideDetail();
+      })
+      .on('mousemove', (e, d) => showTip(
+        `<strong>${d.label}</strong>
+         <div class="tr"><span>Hogares</span><span class="tv">${d3.format(',.0f')(d.n)} (${d.pct}%)</span></div>
+         <div class="tr"><span>Ingreso pc.</span><span class="tv">${fmtCLP(d.ingreso)}</span></div>`, e))
+      .on('mouseleave', hideTip);
+
+    g.append('circle')
+      .attr('r', 0).attr('fill', d => d.color).attr('opacity', .88)
+      .transition().duration(600).delay((_,i) => i*80)
+      .attr('r', d => rSc(d.n));
+
+    g.append('text')
+      .attr('text-anchor','middle').attr('dy','-.15em').attr('fill','white')
+      .attr('pointer-events','none').attr('font-family','Inter,sans-serif').attr('font-weight','700')
+      .attr('font-size', d => Math.max(9, rSc(d.n) * .14))
+      .text(d => d.pct + '%');
+
+    g.append('text')
+      .attr('text-anchor','middle').attr('pointer-events','none')
+      .attr('fill','rgba(255,255,255,.75)').attr('font-family','Inter,sans-serif')
+      .attr('font-size', d => Math.max(7, rSc(d.n) * .1))
+      .each(function(d) {
+        const words = d.label.split(' ');
+        const half  = Math.ceil(words.length / 2);
+        const sel   = d3.select(this);
+        const dy    = rSc(d.n) * .26 + 4;
+        sel.append('tspan').attr('x',0).attr('dy', dy + 'px').text(words.slice(0,half).join(' '));
+        if (half < words.length)
+          sel.append('tspan').attr('x',0).attr('dy','1.1em').text(words.slice(half).join(' '));
+      });
+  }
+
+  function showDetail(d) {
+    detEl.innerHTML = `
+      <div class="bd"><label>Hogares</label><span>${d3.format(',.0f')(d.n)}</span></div>
+      <div class="bd"><label>Ingreso per cápita</label><span>${fmtCLP(d.ingreso)}</span></div>
+      <div class="bd"><label>Escolaridad jefe</label><span>${d.esc} años</span></div>
+      <div class="bd"><label>Zona urbana</label><span>${d.urb}%</span></div>
+      <div class="bd"><label>Pobreza multidim.</label><span>${d.pobre}%</span></div>
+      <div class="bd"><label>Emprendedores</label><span>${d.empr}%</span></div>`;
+    detEl.classList.add('on');
+  }
+  function hideDetail() { detEl.classList.remove('on'); }
+
+  draw();
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
+})();
+
+/* ═══════════════════════════════════════
+   BRECHA SCROLLY
+═══════════════════════════════════════ */
+(function() {
+  let cur = -1;
+
+  function sz() {
+    const el = $id('fig-brecha');
+    return { w: el.clientWidth, h: el.clientHeight };
+  }
+
+  function draw(i) {
+    if (i === cur) return;
+    cur = i;
+    const { w, h } = sz();
+    const svg = d3.select('#viz-brecha').attr('width', w).attr('height', h);
+    svg.selectAll('*').remove();
+    if      (i === 0) bStep0(svg, w, h);
+    else if (i === 1) bStep1(svg, w, h);
+    else if (i === 2) bStep2(svg, w, h);
+    else if (i === 3) bStep3(svg, w, h);
+  }
+
+  function bStep0(svg, w, h) {
+    const maxR = Math.min(w, h) * .27;
+    const rH = maxR, rM = maxR * Math.sqrt(797929 / 1023453);
+    const cx = w/2, cy = h/2;
+    const sep = (rH + rM) * .72;
+
+    [[cx - sep*.52, rH, '#003366', 'H', '$1.023.453', 'Hombre'],
+     [cx + sep*.58, rM, '#8b0000', 'M', '$797.929',   'Mujer']
+    ].forEach(([x, r, fill, ltr, val, lbl], i) => {
+      svg.append('circle').attr('cx',x).attr('cy',cy).attr('r',0)
+        .attr('fill',fill).attr('opacity',.85)
+        .transition().duration(600).delay(i*180).attr('r',r);
+      svg.append('text').attr('x',x).attr('y',cy)
+        .attr('text-anchor','middle').attr('dominant-baseline','middle')
+        .attr('fill','white').attr('font-family',"'Playfair Display',serif")
+        .attr('font-size', r*.26).attr('font-weight','900').text(ltr);
+      svg.append('text').attr('x',x).attr('y', cy + r + 20)
+        .attr('text-anchor','middle').attr('fill',fill)
+        .attr('font-size',11.5).attr('font-family','Inter,sans-serif').attr('font-weight','600')
+        .text(val);
+      svg.append('text').attr('x',x).attr('y', cy + r + 36)
+        .attr('text-anchor','middle').attr('fill','#999')
+        .attr('font-size',10).attr('font-family','Inter,sans-serif').text(lbl);
+    });
+  }
+
+  function bStep1(svg, w, h) {
+    const g = svg.append('g').attr('transform',`translate(${w/2},${h*.38})`);
+    g.append('text').attr('text-anchor','middle').attr('dy','-.1em')
+      .attr('font-family',"'Playfair Display',serif")
+      .attr('font-size', Math.min(w*.15, 92)).attr('font-weight','900')
+      .attr('fill','#8b0000').attr('opacity',0).text('-33.5%')
+      .transition().duration(600).attr('opacity',1);
+    g.append('text').attr('text-anchor','middle').attr('dy','1.5em')
+      .attr('font-size',13).attr('fill','#555').attr('font-family','Inter,sans-serif')
+      .attr('opacity',0).text('brecha salarial neta (controlada)')
+      .transition().duration(600).delay(220).attr('opacity',1);
+    g.append('text').attr('text-anchor','middle').attr('dy','3em')
+      .attr('font-size',11).attr('fill','#888').attr('font-family','Inter,sans-serif')
+      .attr('opacity',0).text('Por cada $100 que gana un hombre, una mujer gana $67')
+      .transition().duration(600).delay(420).attr('opacity',1);
+
+    const bw = Math.min(w*.65, 320), bh = 10;
+    const bx = w/2 - bw/2, by = h*.58;
+    svg.append('rect').attr('x',bx).attr('y',by).attr('width',bw).attr('height',bh)
+      .attr('fill','#003366').attr('rx',5).attr('opacity',0)
+      .transition().delay(320).duration(400).attr('opacity',1);
+    svg.append('rect').attr('x',bx).attr('y',by).attr('width',0).attr('height',bh)
+      .attr('fill','#8b0000').attr('rx',5)
+      .transition().delay(420).duration(700).attr('width', bw * .335);
+    svg.append('text').attr('x',bx + bw*.335/2).attr('y',by-8)
+      .attr('text-anchor','middle').attr('font-size',9).attr('fill','#8b0000')
+      .attr('font-family','Inter,sans-serif').attr('opacity',0).text('33.5% brecha')
+      .transition().delay(800).attr('opacity',1);
+  }
+
+  function bStep2(svg, w, h) {
+    const mob = w < 420;
+    const mg = { t:28, r:8, b:22, l: mob ? 90 : 128 };
+    const iw = w - mg.l - mg.r, ih = h - mg.t - mg.b;
+    const g = svg.append('g').attr('transform',`translate(${mg.l},${mg.t})`);
+    const x = d3.scaleLinear().domain([0, 1850000]).range([0, iw]);
+    const y = d3.scaleBand().domain(DATA.edu.map(d=>d.niv)).range([0,ih]).padding(.32);
+
+    x.ticks(4).forEach(v => {
+      g.append('line').attr('x1',x(v)).attr('x2',x(v)).attr('y1',0).attr('y2',ih)
+        .attr('stroke','#e0e0e0').attr('stroke-dasharray','3,3');
+      g.append('text').attr('x',x(v)).attr('y',-6).attr('text-anchor','middle')
+        .attr('font-size',9).attr('fill','#bbb').text(fmtK(v));
+    });
+
+    g.selectAll('.yl').data(DATA.edu).join('text').attr('class','yl')
+      .attr('x',-8).attr('y',d=>y(d.niv)+y.bandwidth()/2)
+      .attr('text-anchor','end').attr('dominant-baseline','middle')
+      .attr('font-size', mob?9:11).attr('fill','#444').attr('font-family','Inter,sans-serif')
+      .text(d => d.niv);
+
+    g.selectAll('.conn').data(DATA.edu).join('line').attr('class','conn')
+      .attr('x1',d=>x(d.h)).attr('x2',d=>x(d.h))
+      .attr('y1',d=>y(d.niv)+y.bandwidth()/2).attr('y2',d=>y(d.niv)+y.bandwidth()/2)
+      .attr('stroke','#ddd').attr('stroke-width',2)
+      .transition().duration(500).delay((_,i)=>i*55).attr('x2',d=>x(d.m));
+
+    g.selectAll('.dH').data(DATA.edu).join('circle').attr('class','dH')
+      .attr('cx',d=>x(d.h)).attr('cy',d=>y(d.niv)+y.bandwidth()/2)
+      .attr('r',0).attr('fill','#003366')
+      .transition().duration(350).delay((_,i)=>i*55+150).attr('r',6);
+
+    g.selectAll('.dM').data(DATA.edu).join('circle').attr('class','dM')
+      .attr('cx',d=>x(d.m)).attr('cy',d=>y(d.niv)+y.bandwidth()/2)
+      .attr('r',0).attr('fill','#8b0000')
+      .transition().duration(350).delay((_,i)=>i*55+250).attr('r',6);
+
+    g.selectAll('.bl').data(DATA.edu).join('text').attr('class','bl')
+      .attr('x',d=>(x(d.h)+x(d.m))/2).attr('y',d=>y(d.niv)+y.bandwidth()/2-9)
+      .attr('text-anchor','middle').attr('font-size',9).attr('fill','#8b0000')
+      .attr('opacity',0).text(d=>d.br+'%')
+      .transition().delay(700).attr('opacity',1);
+
+    const lg = svg.append('g').attr('transform',`translate(${mg.l},14)`);
+    lg.append('circle').attr('r',5).attr('fill','#003366');
+    lg.append('text').attr('x',9).attr('y',4).attr('font-size',10).attr('fill','#444').text('Hombre');
+    lg.append('circle').attr('cx',65).attr('r',5).attr('fill','#8b0000');
+    lg.append('text').attr('x',74).attr('y',4).attr('font-size',10).attr('fill','#444').text('Mujer');
+  }
+
+  function bStep3(svg, w, h) {
+    const mg = { t:55, r:35, b:50, l: Math.min(w*.38, 150) };
+    const iw = w - mg.l - mg.r, ih = h - mg.t - mg.b;
+    const g = svg.append('g').attr('transform',`translate(${mg.l},${mg.t})`);
+    const x = d3.scaleLinear().domain([0, 2e6]).range([0,iw]);
+    const y = d3.scaleBand().domain(DATA.empr.map(d=>d.tipo)).range([0,ih]).padding(.5);
+
+    [5e5,1e6,1.5e6,2e6].forEach(v => {
+      g.append('line').attr('x1',x(v)).attr('x2',x(v)).attr('y1',0).attr('y2',ih)
+        .attr('stroke','#e0e0e0').attr('stroke-dasharray','3,3');
+      g.append('text').attr('x',x(v)).attr('y',-7).attr('text-anchor','middle')
+        .attr('font-size',10).attr('fill','#bbb').text(fmtM(v));
+    });
+
+    g.selectAll('.tl').data(DATA.empr).join('text').attr('class','tl')
+      .attr('x',-10).attr('y',d=>y(d.tipo)+y.bandwidth()/2)
+      .attr('text-anchor','end').attr('dominant-baseline','middle')
+      .attr('font-size',12).attr('fill','#333').attr('font-weight','500')
+      .text(d=>d.tipo);
+
+    g.selectAll('.cn').data(DATA.empr).join('line').attr('class','cn')
+      .attr('x1',d=>x(d.m)).attr('x2',d=>x(d.m))
+      .attr('y1',d=>y(d.tipo)+y.bandwidth()/2).attr('y2',d=>y(d.tipo)+y.bandwidth()/2)
+      .attr('stroke','#ccc').attr('stroke-width',3)
+      .transition().duration(700).delay((_,i)=>i*200).attr('x2',d=>x(d.h));
+
+    g.selectAll('.eH').data(DATA.empr).join('circle').attr('class','eH')
+      .attr('cx',d=>x(d.h)).attr('cy',d=>y(d.tipo)+y.bandwidth()/2)
+      .attr('r',0).attr('fill','#003366')
+      .transition().duration(400).delay((_,i)=>i*200+250).attr('r',10);
+
+    g.selectAll('.vH').data(DATA.empr).join('text').attr('class','vH')
+      .attr('x',d=>x(d.h)).attr('y',d=>y(d.tipo)+y.bandwidth()/2+24)
+      .attr('text-anchor','middle').attr('font-size',11).attr('fill','#003366')
+      .attr('opacity',0).text(d=>fmtM(d.h))
+      .transition().delay(650).attr('opacity',1);
+
+    g.selectAll('.eM').data(DATA.empr).join('circle').attr('class','eM')
+      .attr('cx',d=>x(d.m)).attr('cy',d=>y(d.tipo)+y.bandwidth()/2)
+      .attr('r',0).attr('fill','#8b0000')
+      .transition().duration(400).delay((_,i)=>i*200+300).attr('r',10);
+
+    g.selectAll('.vM').data(DATA.empr).join('text').attr('class','vM')
+      .attr('x',d=>x(d.m)).attr('y',d=>y(d.tipo)+y.bandwidth()/2+24)
+      .attr('text-anchor','middle').attr('font-size',11).attr('fill','#8b0000')
+      .attr('opacity',0).text(d=>fmtM(d.m))
+      .transition().delay(700).attr('opacity',1);
+
+    g.selectAll('.bt').data(DATA.empr).join('text').attr('class','bt')
+      .attr('x',d=>(x(d.h)+x(d.m))/2).attr('y',d=>y(d.tipo)+y.bandwidth()/2-18)
+      .attr('text-anchor','middle').attr('font-size',14).attr('fill','#8b0000')
+      .attr('font-weight','700').attr('opacity',0).text(d=>d.br+'%')
+      .transition().delay(850).attr('opacity',1);
+
+    const lg = svg.append('g').attr('transform',`translate(${mg.l},20)`);
+    lg.append('circle').attr('r',7).attr('fill','#003366');
+    lg.append('text').attr('x',12).attr('y',5).attr('font-size',11).attr('fill','#444').text('Hombre');
+    lg.append('circle').attr('cx',78).attr('r',7).attr('fill','#8b0000');
+    lg.append('text').attr('x',90).attr('y',5).attr('font-size',11).attr('fill','#444').text('Mujer');
+  }
+
+  const sc = scrollama();
+  sc.setup({ step:'#scr-brecha .step', offset:.5 })
+    .onStepEnter(({ index }) => draw(index));
+  window.addEventListener('resize', () => { sc.resize(); cur=-1; draw(0); });
+  draw(0);
+})();
+
+/* ═══════════════════════════════════════
+   REGIONES
+═══════════════════════════════════════ */
+(function() {
+  const sorted = [...DATA.regiones].sort((a,b) => a.br - b.br);
+
+  function draw() {
+    const svgEl = $id('viz-regiones');
+    const W = svgEl.parentElement.clientWidth;
+    const H = 580;
+    svgEl.setAttribute('width', W);
+    svgEl.setAttribute('height', H);
+    const svg = d3.select('#viz-regiones');
+    svg.selectAll('*').remove();
+
+    const mob = W < 500;
+    const mg = { t:22, r: mob?50:90, b:28, l: mob?115:168 };
+    const iw = W - mg.l - mg.r, ih = H - mg.t - mg.b;
+    const g = svg.append('g').attr('transform',`translate(${mg.l},${mg.t})`);
+
+    const x = d3.scaleLinear().domain([-36, 0]).range([0, iw]);
+    const y = d3.scaleBand().domain(sorted.map(d=>d.r)).range([0,ih]).padding(.28);
+    const cSc = d3.scaleSequential().domain([0,-36])
+      .interpolator(d3.interpolateRgb('#fdd0d3','#8b0000'));
+
+    [-10,-20,-30].forEach(v => {
+      g.append('line').attr('x1',x(v)).attr('x2',x(v)).attr('y1',0).attr('y2',ih)
+        .attr('stroke','#ccc').attr('stroke-dasharray','3,3');
+      g.append('text').attr('x',x(v)).attr('y',-8).attr('text-anchor','middle')
+        .attr('font-size',10).attr('fill','#aaa').text(v+'%');
+    });
+
+    g.append('line').attr('x1',x(-22.2)).attr('x2',x(-22.2)).attr('y1',0).attr('y2',ih)
+      .attr('stroke','#e07000').attr('stroke-width',2).attr('stroke-dasharray','5,3');
+    g.append('text').attr('x',x(-22.2)).attr('y',-8).attr('text-anchor','middle')
+      .attr('font-size',9).attr('fill','#e07000').attr('font-weight','600').text('Promedio');
+
+    g.selectAll('.rb').data(sorted).join('rect').attr('class','rb')
+      .attr('x',x(0)).attr('y',d=>y(d.r)).attr('height',y.bandwidth())
+      .attr('width',0).attr('fill',d=>cSc(d.br)).attr('rx',2)
+      .transition().duration(450).delay((_,i)=>i*28)
+      .attr('x',d=>x(d.br)).attr('width',d=>x(0)-x(d.br));
+
+    g.selectAll('.rl').data(sorted).join('text').attr('class','rl')
+      .attr('x',-9).attr('y',d=>y(d.r)+y.bandwidth()/2)
+      .attr('text-anchor','end').attr('dominant-baseline','middle')
+      .attr('font-size', mob?9.5:12).attr('fill','#333').attr('font-family','Inter,sans-serif')
+      .text(d=>d.r);
+
+    g.selectAll('.rv').data(sorted).join('text').attr('class','rv')
+      .attr('x',d=>x(d.br)-5).attr('y',d=>y(d.r)+y.bandwidth()/2)
+      .attr('text-anchor','end').attr('dominant-baseline','middle')
+      .attr('font-size',10).attr('fill','white').attr('font-weight','700')
+      .attr('opacity',0).text(d=>d.br+'%')
+      .transition().delay((_,i)=>i*28+300).attr('opacity',1);
+
+    g.selectAll('.rh').data(sorted).join('rect').attr('class','rh')
+      .attr('x',0).attr('y',d=>y(d.r)).attr('width',iw).attr('height',y.bandwidth())
+      .attr('fill','transparent')
+      .on('mousemove',(e,d)=>showTip(
+        `<strong>${d.r}</strong>
+         <div class="tr"><span>Hombre</span><span class="tv">${fmtCLP(d.h)}</span></div>
+         <div class="tr"><span>Mujer</span><span class="tv r">${fmtCLP(d.m)}</span></div>
+         <div class="tr"><span>Brecha</span><span class="tv r">${d.br}%</span></div>`,e))
+      .on('mouseleave',hideTip);
+  }
+
+  draw();
+  let rt; window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(draw,150); });
+})();
+
+/* ═══════════════════════════════════════
+   MOVILIDAD SCROLLY
+═══════════════════════════════════════ */
+(function() {
+  let cur = -1;
+  const LABELS = ['Sin educación','Básica incompleta','Básica completa','Media incompleta','Media completa','Sup. incompleta','Sup. completa'];
+  const LABS   = ['Sin edu.','Básica inc.','Básica comp.','Media inc.','Media comp.','Sup. inc.','Sup. comp.'];
+  const lIdx   = {};
+  LABELS.forEach((l,i) => lIdx[l] = i);
+
+  function sz() {
+    const el = $id('fig-movil');
+    return { w: el.clientWidth, h: el.clientHeight };
+  }
+
+  function draw(i) {
+    if (i === cur) return;
+    cur = i;
+    const { w, h } = sz();
+    const svg = d3.select('#viz-movil').attr('width', w).attr('height', h);
+    svg.selectAll('*').remove();
+    if      (i === 0) mStep0(svg, w, h);
+    else if (i === 1) mStep1(svg, w, h);
+    else if (i === 2) mStep2(svg, w, h);
+  }
+
+  function mStep0(svg, w, h) {
+    const segs = [
+      { pct:60.9, color:'#1a6fc4', label:'Ascendente' },
+      { pct:26.5, color:'#336699', label:'Estable' },
+      { pct:12.6, color:'#8b0000', label:'Descendente' }
+    ];
+    const r  = Math.min(w, h) * .28;
+    const cx = w/2, cy = h*.38;
+    const pie = d3.pie().value(d=>d.pct).sort(null)(segs);
+    const arc = d3.arc().innerRadius(r*.55).outerRadius(r);
+
+    svg.append('g').attr('transform',`translate(${cx},${cy})`)
+      .selectAll('path').data(pie).join('path')
+      .attr('fill',d=>d.data.color).attr('d',arc).attr('opacity',0)
+      .transition().duration(600).delay((_,i)=>i*130).attr('opacity',1);
+
+    svg.append('text').attr('x',cx).attr('y',cy)
+      .attr('text-anchor','middle').attr('dominant-baseline','middle')
+      .attr('font-family',"'Playfair Display',serif")
+      .attr('font-size', r*.36).attr('font-weight','900').attr('fill','#5ba3f5')
+      .attr('opacity',0).text('60.9%').transition().delay(300).duration(400).attr('opacity',1);
+    svg.append('text').attr('x',cx).attr('y',cy + r*.2)
+      .attr('text-anchor','middle')
+      .attr('font-size', r*.11).attr('fill','rgba(255,255,255,.45)').attr('opacity',0)
+      .text('ascendente').transition().delay(500).duration(400).attr('opacity',1);
+
+    const gy = cy + r + 35;
+    segs.forEach((s,i) => {
+      const lx = cx + (i-1)*130;
+      svg.append('rect').attr('x',lx-44).attr('y',gy).attr('width',11).attr('height',11)
+        .attr('fill',s.color).attr('rx',2);
+      svg.append('text').attr('x',lx-28).attr('y',gy+9)
+        .attr('font-size',11).attr('fill','rgba(255,255,255,.65)').attr('font-family','Inter,sans-serif')
+        .text(`${s.label}: ${s.pct}%`);
+    });
+  }
+
+  function mStep1(svg, w, h) {
+    const n    = 7;
+    const mg   = { t:78, r:14, b:18, l:70 };
+    const cell = Math.min(
+      Math.floor((w - mg.l - mg.r) / n),
+      Math.floor((h - mg.t - mg.b) / n)
+    );
+    const g = svg.append('g').attr('transform',`translate(${mg.l},${mg.t})`);
+    const cSc = d3.scaleSequential().domain([0,65])
+      .interpolator(d3.interpolateRgb('#0a1628','#1a6fc4'));
+
+    DATA.movMatriz.forEach(([padre, hijo, prob]) => {
+      const xi = lIdx[hijo], yi = lIdx[padre];
+      if (xi === undefined || yi === undefined) return;
+      const diag = xi === yi;
+      g.append('rect')
+        .attr('x', xi*cell+1).attr('y', yi*cell+1)
+        .attr('width', cell-2).attr('height', cell-2)
+        .attr('fill', diag ? '#2a7060' : cSc(prob))
+        .attr('rx',2).attr('opacity',0)
+        .transition().duration(250).delay(yi*n*5 + xi*5).attr('opacity',.92);
+
+      if (prob >= 5) {
+        g.append('text')
+          .attr('x', xi*cell + cell/2).attr('y', yi*cell + cell/2)
+          .attr('text-anchor','middle').attr('dominant-baseline','middle')
+          .attr('font-size', cell > 34 ? 9 : 7).attr('pointer-events','none')
+          .attr('fill', prob > 30 || diag ? 'white' : 'rgba(255,255,255,.5)')
+          .attr('font-family','Inter,sans-serif')
+          .attr('opacity',0).text(Math.round(prob)+'%')
+          .transition().delay(500).attr('opacity',1);
+      }
+    });
+
+    LABS.forEach((l,i) => {
+      g.append('text').attr('x', i*cell+cell/2).attr('y',-6)
+        .attr('text-anchor','middle').attr('font-size',8)
+        .attr('fill','rgba(255,255,255,.38)').attr('font-family','Inter,sans-serif').text(l);
+      g.append('text').attr('x',-6).attr('y', i*cell+cell/2)
+        .attr('text-anchor','end').attr('dominant-baseline','middle')
+        .attr('font-size',8).attr('fill','rgba(255,255,255,.38)').attr('font-family','Inter,sans-serif')
+        .text(l);
+    });
+
+    svg.append('text').attr('x', mg.l + n*cell/2).attr('y',14)
+      .attr('text-anchor','middle').attr('font-size',9)
+      .attr('fill','rgba(255,255,255,.3)').attr('font-family','Inter,sans-serif')
+      .text('EDUCACIÓN HIJO/A →');
+    svg.append('text')
+      .attr('transform',`translate(10,${mg.t + n*cell/2}) rotate(-90)`)
+      .attr('text-anchor','middle').attr('font-size',9)
+      .attr('fill','rgba(255,255,255,.3)').attr('font-family','Inter,sans-serif')
+      .text('← EDUCACIÓN PADRE');
+
+    svg.append('rect').attr('x', mg.l).attr('y', mg.t + n*cell + 18)
+      .attr('width',11).attr('height',11).attr('fill','#2a7060').attr('rx',2);
+    svg.append('text').attr('x', mg.l+15).attr('y', mg.t + n*cell + 28)
+      .attr('font-size',10).attr('fill','rgba(255,255,255,.45)').attr('font-family','Inter,sans-serif')
+      .text('diagonal = sin movilidad (estable)');
+  }
+
+  function mStep2(svg, w, h) {
+    const types  = ['asc','est','des'];
+    const labels = { asc:'Ascendente', est:'Estable', des:'Descendente' };
+    const colors = { asc:'#1a6fc4', est:'#336699', des:'#8b0000' };
+    const bh = Math.min(h*.16, 56);
+    const mg = { t: h*.16, r:45, b:55, l:82 };
+    const iw = w - mg.l - mg.r;
+    const g  = svg.append('g').attr('transform',`translate(${mg.l},${mg.t})`);
+    const gap = bh * 2.5;
+
+    DATA.movSexo.forEach((d, row) => {
+      let cx = 0;
+      types.forEach(t => {
+        const val = d[t];
+        g.append('rect')
+          .attr('x', cx * iw / 100).attr('y', row * gap)
+          .attr('width',0).attr('height',bh)
+          .attr('fill',colors[t]).attr('rx',2)
+          .transition().duration(600).delay(150)
+          .attr('width', val * iw / 100);
+        if (val >= 8) {
+          g.append('text')
+            .attr('x', (cx + val/2) * iw / 100).attr('y', row*gap + bh/2)
+            .attr('text-anchor','middle').attr('dominant-baseline','middle')
+            .attr('font-size',13).attr('fill','white').attr('font-weight','700')
+            .attr('opacity',0).text(val+'%')
+            .transition().delay(550).attr('opacity',1);
+        }
+        cx += val;
+      });
+      g.append('text').attr('x',-10).attr('y', row*gap + bh/2)
+        .attr('text-anchor','end').attr('dominant-baseline','middle')
+        .attr('font-size',14).attr('fill','white').attr('font-weight','600')
+        .text(d.s);
+    });
+
+    const ly = gap * 2 + 14;
+    types.forEach((t,i) => {
+      const lx = i * (iw/3);
+      g.append('rect').attr('x',lx).attr('y',ly).attr('width',11).attr('height',11)
+        .attr('fill',colors[t]).attr('rx',2);
+      g.append('text').attr('x',lx+15).attr('y',ly+9)
+        .attr('font-size',11).attr('fill','rgba(255,255,255,.65)').attr('font-family','Inter,sans-serif')
+        .text(labels[t]);
+    });
+
+    svg.append('text').attr('x', mg.l).attr('y', mg.t - 16)
+      .attr('font-size',14).attr('fill','white').attr('font-weight','700')
+      .attr('font-family','Inter,sans-serif').text('Movilidad educativa por género');
+  }
+
+  const sc = scrollama();
+  sc.setup({ step:'#scr-movil .step', offset:.5 })
+    .onStepEnter(({ index }) => draw(index));
+  window.addEventListener('resize', () => { sc.resize(); cur=-1; draw(0); });
+  draw(0);
+})();
+</script>
+</body>
+</html>
