@@ -172,7 +172,7 @@ body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--
 /* ── RESPONSIVE ── */
 @media (max-width: 750px) {
   .scrolly { flex-direction: column; }
-  .scrolly .fig { position: relative; width: 100%; height: 56vw; min-height: 280px; }
+  .scrolly .fig { position: relative; width: 100%; height: 65vw; min-height: 320px; }
   .scrolly .steps { width: 100%; }
   .step { min-height: auto; padding: 2rem 1.5rem; }
   .step:first-child { padding-top: 2rem; }
@@ -332,10 +332,8 @@ body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--
 
 <!-- CLOSING -->
 <section class="closing">
-  <h2>Los datos son personas. Las personas merecen respuestas.</h2>
   <div class="closing-rule"></div>
   <p>La CASEN 2024 documenta un Chile que avanza en educación, pero que arrastra brechas salariales estructurales. Un país donde el origen sigue determinando el destino, y donde las mujeres logran más — y reciben menos.</p>
-  <p style="margin-top:1.5rem">Entender estos datos es el primer paso para cambiarlos.</p>
   <p class="source">Fuente: Encuesta de Caracterización Socioeconómica Nacional (CASEN) 2024, Ministerio de Desarrollo Social y Familia, Chile. Procesamiento propio con Python, DuckDB y D3.js.</p>
 </section>
 
@@ -449,7 +447,7 @@ document.querySelectorAll('.kpi-num[data-to]').forEach(el => {
 
   function draw() {
     const W = svgEl.parentElement.clientWidth;
-    const H = 480;
+    const H = W < 500 ? 360 : 480;
     svgEl.setAttribute('width', W);
     svgEl.setAttribute('height', H);
     const svg = d3.select('#viz-bubbles');
@@ -491,21 +489,27 @@ document.querySelectorAll('.kpi-num[data-to]').forEach(el => {
     g.append('text')
       .attr('text-anchor','middle').attr('dy','-.15em').attr('fill','white')
       .attr('pointer-events','none').attr('font-family','Inter,sans-serif').attr('font-weight','700')
-      .attr('font-size', d => Math.max(9, rSc(d.n) * .14))
+      .attr('font-size', d => Math.max(11, rSc(d.n) * .16))
       .text(d => d.pct + '%');
 
     g.append('text')
       .attr('text-anchor','middle').attr('pointer-events','none')
-      .attr('fill','rgba(255,255,255,.75)').attr('font-family','Inter,sans-serif')
-      .attr('font-size', d => Math.max(7, rSc(d.n) * .1))
+      .attr('fill','rgba(255,255,255,.88)').attr('font-family','Inter,sans-serif')
+      .attr('font-size', d => Math.max(9, rSc(d.n) * .11))
       .each(function(d) {
+        const r = rSc(d.n);
+        if (r < 22) return;
         const words = d.label.split(' ');
         const half  = Math.ceil(words.length / 2);
         const sel   = d3.select(this);
-        const dy    = rSc(d.n) * .26 + 4;
-        sel.append('tspan').attr('x',0).attr('dy', dy + 'px').text(words.slice(0,half).join(' '));
-        if (half < words.length)
-          sel.append('tspan').attr('x',0).attr('dy','1.1em').text(words.slice(half).join(' '));
+        const dy    = r * .26 + 4;
+        if (r < 36) {
+          sel.append('tspan').attr('x',0).attr('dy', dy + 'px').text(d.label);
+        } else {
+          sel.append('tspan').attr('x',0).attr('dy', dy + 'px').text(words.slice(0,half).join(' '));
+          if (half < words.length)
+            sel.append('tspan').attr('x',0).attr('dy','1.2em').text(words.slice(half).join(' '));
+        }
       });
   }
 
@@ -549,28 +553,29 @@ document.querySelectorAll('.kpi-num[data-to]').forEach(el => {
   }
 
   function bStep0(svg, w, h) {
-    const maxR = Math.min(w, h) * .27;
+    const mob = w < 480;
+    const maxR = Math.min(w * .26, h * (mob ? .25 : .30));
     const rH = maxR, rM = maxR * Math.sqrt(797929 / 1023453);
-    const cx = w/2, cy = h/2;
+    const cx = w / 2, cy = mob ? h * .42 : h / 2;
     const sep = (rH + rM) * .72;
 
-    [[cx - sep*.52, rH, '#003366', 'H', '$1.023.453', 'Hombre'],
-     [cx + sep*.58, rM, '#8b0000', 'M', '$797.929',   'Mujer']
+    [[cx - sep * .52, rH, '#003366', 'H', '$1.023.453', 'Hombre'],
+     [cx + sep * .58, rM, '#8b0000', 'M', '$797.929',   'Mujer']
     ].forEach(([x, r, fill, ltr, val, lbl], i) => {
-      svg.append('circle').attr('cx',x).attr('cy',cy).attr('r',0)
-        .attr('fill',fill).attr('opacity',.85)
-        .transition().duration(600).delay(i*180).attr('r',r);
-      svg.append('text').attr('x',x).attr('y',cy)
-        .attr('text-anchor','middle').attr('dominant-baseline','middle')
-        .attr('fill','white').attr('font-family',"'Playfair Display',serif")
-        .attr('font-size', r*.26).attr('font-weight','900').text(ltr);
-      svg.append('text').attr('x',x).attr('y', cy + r + 20)
-        .attr('text-anchor','middle').attr('fill',fill)
-        .attr('font-size',11.5).attr('font-family','Inter,sans-serif').attr('font-weight','600')
+      svg.append('circle').attr('cx', x).attr('cy', cy).attr('r', 0)
+        .attr('fill', fill).attr('opacity', .85)
+        .transition().duration(600).delay(i * 180).attr('r', r);
+      svg.append('text').attr('x', x).attr('y', cy)
+        .attr('text-anchor', 'middle').attr('dominant-baseline', 'middle')
+        .attr('fill', 'white').attr('font-family', "'Playfair Display',serif")
+        .attr('font-size', r * .26).attr('font-weight', '900').text(ltr);
+      svg.append('text').attr('x', x).attr('y', Math.min(cy + r + 20, h - 22))
+        .attr('text-anchor', 'middle').attr('fill', fill)
+        .attr('font-size', mob ? 10.5 : 11.5).attr('font-family', 'Inter,sans-serif').attr('font-weight', '600')
         .text(val);
-      svg.append('text').attr('x',x).attr('y', cy + r + 36)
-        .attr('text-anchor','middle').attr('fill','#999')
-        .attr('font-size',10).attr('font-family','Inter,sans-serif').text(lbl);
+      svg.append('text').attr('x', x).attr('y', Math.min(cy + r + 36, h - 6))
+        .attr('text-anchor', 'middle').attr('fill', '#999')
+        .attr('font-size', mob ? 9 : 10).attr('font-family', 'Inter,sans-serif').text(lbl);
     });
   }
 
@@ -719,7 +724,7 @@ document.querySelectorAll('.kpi-num[data-to]').forEach(el => {
   sc.setup({ step:'#scr-brecha .step', offset:.5 })
     .onStepEnter(({ index }) => draw(index));
   window.addEventListener('resize', () => { sc.resize(); cur=-1; draw(0); });
-  draw(0);
+  requestAnimationFrame(() => draw(0));
 })();
 
 /* ═══════════════════════════════════════
@@ -772,9 +777,9 @@ document.querySelectorAll('.kpi-num[data-to]').forEach(el => {
       .text(d=>d.r);
 
     g.selectAll('.rv').data(sorted).join('text').attr('class','rv')
-      .attr('x',d=>x(d.br)-5).attr('y',d=>y(d.r)+y.bandwidth()/2)
-      .attr('text-anchor','end').attr('dominant-baseline','middle')
-      .attr('font-size',10).attr('fill','white').attr('font-weight','700')
+      .attr('x',d=>x(d.br)+6).attr('y',d=>y(d.r)+y.bandwidth()/2)
+      .attr('text-anchor','start').attr('dominant-baseline','middle')
+      .attr('font-size',10).attr('fill',d=>d.br>-20?'#6b0000':'white').attr('font-weight','700')
       .attr('opacity',0).text(d=>d.br+'%')
       .transition().delay((_,i)=>i*28+300).attr('opacity',1);
 
@@ -845,14 +850,16 @@ document.querySelectorAll('.kpi-num[data-to]').forEach(el => {
       .attr('font-size', r*.11).attr('fill','rgba(255,255,255,.45)').attr('opacity',0)
       .text('ascendente').transition().delay(500).duration(400).attr('opacity',1);
 
-    const gy = cy + r + 35;
-    segs.forEach((s,i) => {
-      const lx = cx + (i-1)*130;
-      svg.append('rect').attr('x',lx-44).attr('y',gy).attr('width',11).attr('height',11)
-        .attr('fill',s.color).attr('rx',2);
-      svg.append('text').attr('x',lx-28).attr('y',gy+9)
-        .attr('font-size',11).attr('fill','rgba(255,255,255,.65)').attr('font-family','Inter,sans-serif')
-        .text(`${s.label}: ${s.pct}%`);
+    const gy = Math.min(cy + r + 24, h - 30);
+    const lgW = Math.min(w - 24, 420);
+    const lgX0 = (w - lgW) / 2;
+    segs.forEach((s, i) => {
+      const lx = lgX0 + (lgW / segs.length) * i;
+      svg.append('rect').attr('x', lx).attr('y', gy).attr('width', 11).attr('height', 11)
+        .attr('fill', s.color).attr('rx', 2);
+      svg.append('text').attr('x', lx + 15).attr('y', gy + 9)
+        .attr('font-size', 10).attr('fill', 'rgba(255,255,255,.65)').attr('font-family', 'Inter,sans-serif')
+        .text(`${s.label} ${s.pct}%`);
     });
   }
 
@@ -921,8 +928,9 @@ document.querySelectorAll('.kpi-num[data-to]').forEach(el => {
     const types  = ['asc','est','des'];
     const labels = { asc:'Ascendente', est:'Estable', des:'Descendente' };
     const colors = { asc:'#1a6fc4', est:'#336699', des:'#8b0000' };
-    const bh = Math.min(h*.16, 56);
-    const mg = { t: h*.16, r:45, b:55, l:82 };
+    const mob2 = w < 450;
+    const bh = Math.min(h * (mob2 ? .14 : .16), 56);
+    const mg = { t: h * (mob2 ? .12 : .16), r: mob2 ? 16 : 45, b: 50, l: mob2 ? 68 : 82 };
     const iw = w - mg.l - mg.r;
     const g  = svg.append('g').attr('transform',`translate(${mg.l},${mg.t})`);
     const gap = bh * 2.5;
@@ -972,7 +980,7 @@ document.querySelectorAll('.kpi-num[data-to]').forEach(el => {
   sc.setup({ step:'#scr-movil .step', offset:.5 })
     .onStepEnter(({ index }) => draw(index));
   window.addEventListener('resize', () => { sc.resize(); cur=-1; draw(0); });
-  draw(0);
+  requestAnimationFrame(() => draw(0));
 })();
 </script>
 </body>
